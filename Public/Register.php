@@ -25,10 +25,10 @@
             </div>
 
             <form class="space-y-4 ">
-                <input type="text" placeholder="Full Name" class="w-full px-4 py-3 bg-white/60 border border-gray-200 rounded-lg outline-none focus:bg-white focus:border-black">
-                <input type="email" placeholder="Email Address" class="w-full px-4 py-3 bg-white/60 border border-gray-200 rounded-lg outline-none focus:bg-white focus:border-black">
-                <input type="password" placeholder="Password" class="w-full px-4 py-3 bg-white/60 border border-gray-200 rounded-lg outline-none focus:bg-white focus:border-black">
-                <input type="password" placeholder="Confirm Password" class="w-full px-4 py-3 bg-white/60 border border-gray-200 rounded-lg outline-none focus:bg-white focus:border-black">
+                <input type="text" name="fullname" placeholder="Full Name" class="w-full px-4 py-3 bg-white/60 border border-gray-200 rounded-lg outline-none focus:bg-white focus:border-black">
+                <input type="email" name = "email" placeholder="Email Address" class="w-full px-4 py-3 bg-white/60 border border-gray-200 rounded-lg outline-none focus:bg-white focus:border-black">
+                <input type="password" name ="password" placeholder="Password" class="w-full px-4 py-3 bg-white/60 border border-gray-200 rounded-lg outline-none focus:bg-white focus:border-black">
+                <input type="password" name="confirm_password" placeholder="Confirm Password" class="w-full px-4 py-3 bg-white/60 border border-gray-200 rounded-lg outline-none focus:bg-white focus:border-black">
                 
                 <button class="w-full cursor-pointer bg-[#182134] text-white py-3 rounded-lg font-medium hover:bg-black transition mt-2">Sign Up</button>
             </form>
