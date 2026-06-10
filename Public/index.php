@@ -46,13 +46,13 @@
 
             <div class="flex gap-3">
             <button>  
-                <a href="#" class="bg-white border border-black hover:bg-gray-200 text-black font-semibold px-4 py-3 rounded-3xl">
+                <a href="login.php" class="bg-white border border-black hover:bg-gray-200 text-black font-semibold px-4 py-3 rounded-3xl">
                     Login
                 </a>
             </button>
 
             <button>  
-                <a href="#" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-4 py-3 rounded-3xl ">
+                <a href="Register.php" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-4 py-3 rounded-3xl ">
                     Register
                 </a>
             </button>
