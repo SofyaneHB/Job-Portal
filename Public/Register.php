@@ -24,7 +24,7 @@ unset($_SESSION['error'], $_SESSION['error_field'], $_SESSION['old_fullname'], $
 <body class="min-h-screen flex items-center justify-center p-4 bg-gray-100 ">
 
 <fieldset class="w-full max-w-5xl h-[92vh] bg-white/40 backdrop-blur-xl rounded-[40px] shadow-2xl border border-white/50 flex flex-col items-center justify-center relative overflow-hidden"
-          style="background-image: url(../img/Background_Login.php.png);" >
+          style="background-image: url(../assets/img/Background_Login.php.png);" >
         
     <div class="absolute top-8 left-8 flex items-center gap-2">
         <div class="w-3 h-3 bg-black rounded-full"></div>
