@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Portal | Find your Job</title>
-    <script type="module" src="http://localhost:5174/@vite/client"></script>
+    <link href="../output.css" rel="stylesheet"> 
 
-    <link rel="stylesheet" href="http://localhost:5174/src/index.css">
+
 </head>
 
 <body>
@@ -356,7 +356,7 @@
     </div>
 
     <div class="pt-8 border-t border-gray-900 text-center text-xs text-gray-600">
-      <p>Copyright © 2026 All Rights Reserved by <a href="#" class="text-indigo-400 hover:underline">Sofyane_HB</a></p>
+      <p>Copyright &copy; 2026 All Rights Reserved by <a href="#" class="text-indigo-400 hover:underline">Sofyane_HB</a></p>
     </div>
 
   </div>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login page</title>
-    <link rel="stylesheet" href="http://localhost:5174/src/index.css">
+    <link href="../output.css" rel="stylesheet"> 
 
 </head>
 <body class="min-h-screen bg-cover flex items-center justify-center p-6 " >

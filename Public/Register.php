@@ -17,7 +17,7 @@ unset($_SESSION['error'], $_SESSION['error_field'], $_SESSION['old_fullname'], $
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Page</title>
-    <link rel="stylesheet" href="http://localhost:5174/src/index.css">
+    <link href="../output.css" rel="stylesheet"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 </head>
