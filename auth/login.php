@@ -1,48 +1,37 @@
 <?php
 
-session_start();
-
 include "../config/db.php";
-
-$error = "";
+require "../includes/functions.php";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    $email = trim($_POST['email']);
+    $email = clean_input($_POST['email']);
     $password = ($_POST['password']);
 
     if(empty($email) || empty($password)) {
-        $error = "All fiels are required";
+        set_flash("error", "All fields are required");
+        redirect("../Public/login.php");
+
     } 
     
-    else {
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(":email", $email);
-        $stmt->execute();
+    $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(":email", $email);
+    $stmt->execute();
         
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user) {
-            if (password_verify($password,$user['password'])) {
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['user_name'] = $user['full_name'];
-                $_SESSION['$user_email'] = $user['email'];
+    if ($user && password_verify($password, $user['password'])) {
 
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_name'] = $user['full_name'];
+        $_SESSION['user_email'] = $user['email'];
 
-                header("Location: ../Public/");
-                exit();
+        redirect("../Public/index.php");
 
-            } else {
-                $error = "Password incorrect";
-            }
         } else {
-            $error = "Emial Not Found";
+            set_flash("error", "Invalid credentials");
+            redirect("../Public/login.php");
         }
-
-
-        }
-
-
     }
-
 ?>

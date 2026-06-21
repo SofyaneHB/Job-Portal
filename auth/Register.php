@@ -1,76 +1,43 @@
 <?php
 
-session_start();
 require "../config/db.php";
+require "../includes/functions.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $fullname = trim($_POST["fullname"]);
-    $email = trim($_POST["email"]);
-    $password = trim($_POST["password"]);
+    $fullname = clean_input($_POST["fullname"]);
+    $email = clean_input($_POST["email"]);
+    $password = $_POST["password"];
     $confirm_password = $_POST["confirm_password"];
 
     $_SESSION['old_fullname'] = $fullname;
     $_SESSION['old_email'] = $email;
 
-
-    if (strlen($password < 7)) {
-
-        $_SESSION['error'] = "The password must contain at least 6 chars";
-        $_SESSION['error_field'] = "password";
-
-        header("Location: ../Public/Register.php?error=password_weak");
-        exit();
+    if (strlen($password) < 7) {
+        set_flash("error", "Password too weak");
+        redirect("../Public/Register.php");
     }
 
-
-    if ($password != $_POST["confirm_password"]){
-
-        $_SESSION['error'] = "Passwords do not match";
-        $_SESSION['error_field'] = "confirm_password";
-
-        header("Location: ../Public/Register.php?error=password_dontmatch");
-        exit();
+    if ($password !== $confirm_password) {
+        set_flash("error", "Passwords do not match");
+        redirect("../Public/Register.php");
     }
 
-    $check_email = $pdo->prepare("SELECT id FROM users WHERE email = :email");
-
-    $check_email->execute([
-        ":email" => $email
-    ]);
-
-    if ($check_email->rowCount() > 0 ) {
-        
-        $_SESSION['error'] = "Email already exists";
-        $_SESSION['error_field'] = "email";
-
-        header("Location: ../Public/Register.php?error=email_exists");
-        exit();
+    if (email_exists($pdo, $email)) {
+        set_flash("error", "Email already exists");
+        redirect("../Public/Register.php");
     }
 
+    create_user(
+        $pdo,
+        $fullname,
+        $email,
+        password_hash($password, PASSWORD_DEFAULT)
+    );
 
-    try {
-        $hashpassword = password_hash($password,PASSWORD_DEFAULT);
+    unset($_SESSION['old_fullname'], $_SESSION['old_email']);
 
-        $sql = "INSERT INTO users(full_name, email, password) VALUES (:full_name, :email, :password)";
-        $stmt = $pdo->prepare($sql);
-
-        $stmt->execute([
-            ":full_name" => $fullname,
-            ":email" => $email,
-            ":password" => $hashpassword
-        ]);
-
-        unset($_SESSION['old_fullname'], $_SESSION['old_email']);
-
-        header("Location: ../Public/login.php");
-        exit();
-    }
-
-    catch (PDOException $e) {
-        echo "Invalide " . $e->getMessage();
-    }
-
+    set_flash("success", "Account created successfully");
+    redirect("../Public/login.php");
 }
-
 ?>

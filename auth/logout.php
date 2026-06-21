@@ -1,27 +1,16 @@
 <?php
 
-session_start();
+require "../includes/functions.php";
 
-$_SESSION = [];
-
-session_destroy();
-
-if (ini_get("session.use_cookies")) {
-    $params = session_get_cookie_params();
-
-    setcookie(session_name(),
-        '',
-        time() - 42000,
-        $params["path"],
-        $params["domain"],
-        $params["secure"],
-        $params["httponly"]
-    
-    );
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
 
+logout_user();
 
-header ("Location: ../Public/dashboard.php");
-exit();
+session_start();
 
-?>  
+set_flash('success', 'You have been successfully logged out.');
+redirect("../Public/login.php");
+
+?>
