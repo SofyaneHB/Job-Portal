@@ -1,18 +1,16 @@
 <?php
-
 include "../config/db.php";
-require "../includes/functions.php";
+require "../includes/functions.php"; // هادي ديجا فيها session_start()
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $email = clean_input($_POST['email']);
-    $password = ($_POST['password']);
+    $password = $_POST['password'];
 
     if(empty($email) || empty($password)) {
         set_flash("error", "All fields are required");
         redirect("../Public/login.php");
-
-    } 
+    } -
     
     $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
     $stmt = $pdo->prepare($sql);
@@ -24,14 +22,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if ($user && password_verify($password, $user['password'])) {
 
         $_SESSION['user_id'] = $user['id'];
-        $_SESSION['user_name'] = $user['full_name'];
+        $_SESSION['user_name'] = $user['name']; 
         $_SESSION['user_email'] = $user['email'];
 
-        redirect("../Public/index.php");
+        set_flash("success", "Welcome back!");
+        redirect("../candidate/dashboard.php");
 
-        } else {
-            set_flash("error", "Invalid credentials");
-            redirect("../Public/login.php");
-        }
+    } else {
+        set_flash("error", "Invalid credentials");
+        redirect("../Public/login.php");
     }
+}
 ?>

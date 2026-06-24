@@ -78,15 +78,14 @@ function email_exists($pdo, $email) {
     return $stmt->rowCount() > 0;
 }
 
-
+// ✅ التـصـحـيـح: رجعنا اسم العمود name باش يتطابق مع الـ Database ديالك
 function create_user($pdo, $fullname, $email, $password) {
     $stmt = $pdo->prepare("
-        INSERT INTO users(full_name, email, password)
+        INSERT INTO users(name, email, password)
         VALUES (?, ?, ?)
     ");
 
     return $stmt->execute([$fullname, $email, $password]);
 }
-
 
 ?>
