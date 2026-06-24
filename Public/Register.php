@@ -38,43 +38,52 @@ unset($_SESSION['error'], $_SESSION['error_field'], $_SESSION['old_fullname'], $
             <p class="text-gray-500 text-sm mt-2">Make a new doc to bring your words, data, and teams together. For free.</p>
         </div>
 
-        <form action="login.php" method="POST" class="space-y-4">
-                
-            <div>
-                <input type="text" name="fullname" required value="<?php echo htmlspecialchars($old_fullname); ?>" placeholder="Full Name" 
-                       class="w-full px-4 py-3 bg-white/60 border border-gray-200 rounded-lg outline-none focus:bg-white focus:border-black transition-all">
-            </div>
+            <form action="../auth/Register.php" method="POST" class="space-y-4">
 
-            <div>
-                <input type="email" name="email" required value="<?php echo htmlspecialchars($old_email); ?>" placeholder="Email Address" 
-                       class="w-full px-4 py-3 bg-white/60 border rounded-lg outline-none focus:bg-white focus:border-black transition-all
-                       <?php echo ($errorField === 'email') ? 'border-red-500 focus:border-red-500 ring-2 ring-red-100' : 'border-gray-200'; ?>">
-                <?php if ($error === 'email_exists'): ?>
-                    <p class="text-red-500 text-xs mt-1 text-left font-medium pl-1"><?php echo $errorMessage; ?></p>
-                <?php endif; ?>
-            </div>
+                <div>
+                    <input type="text" name="fullname" required
+                        value="<?php echo htmlspecialchars($old_fullname); ?>"
+                        placeholder="Full Name"
+                        class="w-full px-4 py-3 bg-white/60 border border-gray-200 rounded-lg outline-none focus:bg-white focus:border-black transition-all">
+                </div>
 
-            <div>
-                <input type="password" name="password" required placeholder="Password" 
-                       class="w-full px-4 py-3 bg-white/60 border rounded-lg outline-none focus:bg-white focus:border-black transition-all
-                       <?php echo ($errorField === 'password') ? 'border-red-500 focus:border-red-500 ring-2 ring-red-100' : 'border-gray-200'; ?>">
-                <?php if ($error === 'password_weak'): ?>
-                    <p class="text-red-500 text-xs mt-1 text-left font-medium pl-1"><?php echo $errorMessage; ?></p>
-                <?php endif; ?>
-            </div>
+                <div>
+                    <input type="email" name="email" required
+                        value="<?php echo htmlspecialchars($old_email); ?>"
+                        placeholder="Email Address"
+                        class="w-full px-4 py-3 bg-white/60 border border-gray-200 rounded-lg outline-none focus:bg-white focus:border-black transition-all">
+                </div>
 
-            <div>
-                <input type="password" name="confirm_password" required placeholder="Confirm Password" 
-                       class="w-full px-4 py-3 bg-white/60 border rounded-lg outline-none focus:bg-white focus:border-black transition-all
-                       <?php echo ($errorField === 'confirm_password') ? 'border-red-500 focus:border-red-500 ring-2 ring-red-100' : 'border-gray-200'; ?>">
-                <?php if ($error === 'password_dontmatch'): ?>
-                    <p class="text-red-500 text-xs mt-1 text-left font-medium pl-1"><?php echo $errorMessage; ?></p>
-                <?php endif; ?>
-            </div>
-                
-            <button type="submit" class="w-full cursor-pointer bg-[#182134] text-white py-3 rounded-lg font-medium hover:bg-black transition mt-2">Sign Up</button>
-        </form>
+                <!-- NEW ROLE SELECT -->
+                <div>
+                    <select name="role" required
+                        class="w-full px-4 py-3 bg-white/60 border border-gray-200 rounded-lg outline-none focus:bg-white focus:border-black transition-all">
 
+                        <option value="">Select Account Type</option>
+                        <option value="candidate">Candidate</option>
+                        <option value="company">Company</option>
+
+                    </select>
+                </div>
+
+                <div>
+                    <input type="password" name="password" required
+                        placeholder="Password"
+                        class="w-full px-4 py-3 bg-white/60 border border-gray-200 rounded-lg outline-none focus:bg-white focus:border-black transition-all">
+                </div>
+
+                <div>
+                    <input type="password" name="confirm_password" required
+                        placeholder="Confirm Password"
+                        class="w-full px-4 py-3 bg-white/60 border border-gray-200 rounded-lg outline-none focus:bg-white focus:border-black transition-all">
+                </div>
+
+                <button type="submit"
+                    class="w-full cursor-pointer bg-[#182134] text-white py-3 rounded-lg font-medium hover:bg-black transition mt-2">
+                    Sign Up
+                </button>
+
+            </form>
         <p class="text-center text-sm text-gray-600 mt-4">Already have an account? <a href="#" class="font-bold text-gray-900">Log in</a></p>
 
         <div class="relative my-6">

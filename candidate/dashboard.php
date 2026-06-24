@@ -9,6 +9,10 @@ require_once "../includes/navbar.php";
 
 require_login();
 
+if ($_SESSION['user_role'] !== 'candidate') {
+    redirect("../public/login.php");
+}
+
 $user_id = $_SESSION['user_id'];
 
 /* =========================
